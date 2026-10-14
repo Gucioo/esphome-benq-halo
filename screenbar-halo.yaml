@@ -1,0 +1,104 @@
+# BenQ ScreenBar Halo (1st gen) -> Home Assistant, ESP32-WROOM-32 DevKit v1 + BM5602-60-1
+#
+# Wiring (BM5602 pads, component side up, antenna at the top, LEFT to RIGHT:
+#   1 VSS  2 VDD  3 GIO1  4 CSN  5 SCK  6 GIO2  7 SDIO  8 GIO3  9 GIO4)
+#   VDD  -> 3V3        VSS  -> GND
+#   SCK  -> GPIO18     GIO2 -> GPIO19 (MISO)
+#   SDIO -> GPIO23 (MOSI)
+#   CSN  -> GPIO5
+# 3.3 V only. GIO1/3/4 not connected.
+
+substitutions:
+  name: screenbar-halo
+  friendly_name: ScreenBar Halo
+
+esphome:
+  name: ${name}
+  friendly_name: ${friendly_name}
+
+esp32:
+  board: esp32dev
+  framework:
+    type: esp-idf
+
+external_components:
+  # Local folder next to this YAML. Swap for a git source once you push it:
+  # - source: github://<you>/esphome-benq-halo
+  - source:
+      type: local
+      path: components
+    components: [benq_halo]
+
+logger:
+  level: DEBUG   # DEBUG shows every frame heard from the remote ("RX C4 A5 (bright)")
+
+api:
+  encryption:
+    key: !secret api_key
+
+ota:
+  - platform: esphome
+    password: !secret ota_password
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+  ap:
+    ssid: ${name}
+
+spi:
+  clk_pin: GPIO18
+  miso_pin: GPIO19
+  mosi_pin: GPIO23
+
+benq_halo:
+  id: halo
+  cs_pin: GPIO5
+  # Link address in REGISTER order (= on-air bytes reversed). Keep 4FF0FD63 and
+  # use the "Pair lamp" button once: the lamp then listens to this ESP (README).
+  address: "4FF0FD63"
+  listen: true            # follow the real remote so HA stays in sync
+  # remote_beacon: "XXXXXXXX"  # your remote's ID, from "Sniff remote pairing" (only for "Scan link addresses")
+  pc_presence:
+    host: DESKTOP-XXXXXXX  # your PC name (mDNS), or its IP — remove this block if not wanted
+    # interval: 10s
+    # off_delay: 2min      # PC silent this long -> lamp off
+    # port: 0              # 0 = ping; 445 / 3389 = TCP check if ping is blocked
+    # control_lamp: true   # false = only report PC online
+  # brightness_gamma: 2.0 # lamp perceived ~logarithmic
+  # repeats: 3            # frames per command, like the remote
+  # pairing_payloads: ["5A5A", "F5C3", "CF49"]  # beacon used by "Pair lamp"
+
+light:
+  - platform: benq_halo
+    name: None            # entity takes the device name: "ScreenBar Halo"
+    restore_mode: ALWAYS_OFF  # ignored at boot anyway: state is restored from the ESP's own memory
+
+select:
+  - platform: benq_halo
+    name: Lamps           # Front / Back / Both
+
+button:
+  - platform: benq_halo
+    auto_mode:
+      name: Auto mode     # the remote's "A" button
+    resync:
+      name: Resync
+    sniff_pairing:
+      name: Sniff remote pairing
+    scan_addresses:
+      name: Scan link addresses
+    pair_lamp:
+      name: Pair lamp (experimental)
+
+binary_sensor:
+  - platform: benq_halo
+    link:
+      name: Lamp link
+    pc_online:
+      name: PC online
+
+text_sensor:
+  - platform: benq_halo
+    last_frame:
+      name: Last radio frame

@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 560" font-family="Helvetica, Arial, sans-serif">
+  <title>ESP32-WROOM-32 DevKit v1 to BM5602-60-1 wiring (module seen from its flat back side)</title>
+  <rect x="0" y="0" width="720" height="560" fill="#ffffff"/>
+
+  <text x="360" y="30" text-anchor="middle" font-size="18" font-weight="bold" fill="#222">ESP32-WROOM-32 DevKit v1  →  BM5602-60-1 (BC5602)</text>
+
+  <!-- ESP32 board -->
+  <rect x="40" y="55" width="200" height="470" rx="8" fill="#1f3b5c" stroke="#0f2236" stroke-width="2"/>
+  <rect x="70" y="70" width="140" height="70" rx="4" fill="#c9ced6" stroke="#8a9099"/>
+  <text x="140" y="100" text-anchor="middle" font-size="13" fill="#222">ESP32-WROOM-32</text>
+  <text x="140" y="118" text-anchor="middle" font-size="11" fill="#444">(antenna up)</text>
+  <rect x="115" y="500" width="50" height="25" rx="3" fill="#9aa3ad"/>
+  <text x="140" y="545" text-anchor="middle" font-size="12" fill="#444">USB</text>
+  <text x="140" y="175" text-anchor="middle" font-size="12" fill="#c9d6e6">right-hand header</text>
+
+  <g font-size="13" fill="#ffffff" text-anchor="end">
+    <text x="225" y="204">D23</text>
+    <text x="225" y="230" fill="#7f93aa">D22</text>
+    <text x="225" y="256" fill="#7f93aa">TX0</text>
+    <text x="225" y="282" fill="#7f93aa">RX0</text>
+    <text x="225" y="308" fill="#7f93aa">D21</text>
+    <text x="225" y="334">D19</text>
+    <text x="225" y="360">D18</text>
+    <text x="225" y="386">D5</text>
+    <text x="225" y="412" fill="#7f93aa">TX2</text>
+    <text x="225" y="438" fill="#7f93aa">RX2</text>
+    <text x="225" y="464">GND</text>
+    <text x="225" y="490">3V3</text>
+  </g>
+  <text x="70" y="452" font-size="10" fill="#7f93aa">(D4, D2, D15 omitted)</text>
+
+  <!-- BM5602 module -->
+  <rect x="480" y="120" width="200" height="400" rx="6" fill="#2d6a3e" stroke="#174024" stroke-width="2"/>
+  <path d="M500 140 h40 v20 h-30 v20 h40 v-20 h30 v20 h40" fill="none" stroke="#d4b14a" stroke-width="3"/>
+  <text x="580" y="205" text-anchor="middle" font-size="11" fill="#d4e8d8">printed antenna (keep clear)</text>
+  <rect x="490" y="225" width="180" height="34" rx="4" fill="#f2c94c"/>
+  <text x="580" y="247" text-anchor="middle" font-size="12" font-weight="bold" fill="#3d2e00">BACK SIDE (flat, no chips)</text>
+  <text x="580" y="290" text-anchor="middle" font-size="14" font-weight="bold" fill="#fff">BM5602-60-1</text>
+  <text x="580" y="310" text-anchor="middle" font-size="10" fill="#d4e8d8">viewed from the flat side,</text>
+  <text x="580" y="324" text-anchor="middle" font-size="10" fill="#d4e8d8">antenna at top; pad 1 = VSS</text>
+  <text x="580" y="338" text-anchor="middle" font-size="10" fill="#d4e8d8">(beeps to the antenna-side GND pads)</text>
+
+  <!-- pad labels aligned with wires -->
+  <g font-size="13" fill="#ffffff">
+    <text x="495" y="380">7 SDIO</text>
+    <text x="495" y="404">6 GIO2</text>
+    <text x="495" y="428">5 SCK</text>
+    <text x="495" y="452">4 CSN</text>
+    <text x="495" y="476">2 VDD</text>
+    <text x="495" y="500">1 VSS</text>
+  </g>
+  <text x="625" y="404" text-anchor="middle" font-size="10" fill="#9fc3a8">pads 3, 8, 9</text>
+  <text x="625" y="418" text-anchor="middle" font-size="10" fill="#9fc3a8">(GIO1/3/4)</text>
+  <text x="625" y="432" text-anchor="middle" font-size="10" fill="#9fc3a8">not connected</text>
+
+  <!-- wires -->
+  <g fill="none" stroke-width="3" stroke-linejoin="round">
+    <path d="M240 200 H410 V376 H480" stroke="#7b5cd6"/>
+    <path d="M240 330 H390 V400 H480" stroke="#1d9e75"/>
+    <path d="M240 356 H370 V424 H480" stroke="#e07020"/>
+    <path d="M240 382 H350 V448 H480" stroke="#d4537e"/>
+    <path d="M240 460 H330 V496 H480" stroke="#333333"/>
+    <path d="M240 486 H310 V472 H480" stroke="#e02424"/>
+  </g>
+  <g>
+    <circle cx="240" cy="200" r="4" fill="#7b5cd6"/><circle cx="480" cy="376" r="4" fill="#7b5cd6"/>
+    <circle cx="240" cy="330" r="4" fill="#1d9e75"/><circle cx="480" cy="400" r="4" fill="#1d9e75"/>
+    <circle cx="240" cy="356" r="4" fill="#e07020"/><circle cx="480" cy="424" r="4" fill="#e07020"/>
+    <circle cx="240" cy="382" r="4" fill="#d4537e"/><circle cx="480" cy="448" r="4" fill="#d4537e"/>
+    <circle cx="240" cy="460" r="4" fill="#333333"/><circle cx="480" cy="496" r="4" fill="#333333"/>
+    <circle cx="240" cy="486" r="4" fill="#e02424"/><circle cx="480" cy="472" r="4" fill="#e02424"/>
+  </g>
+
+  <!-- legend -->
+  <g font-size="12" fill="#222">
+    <text x="262" y="78" font-weight="bold">Wire</text>
+    <rect x="262" y="88" width="18" height="4" fill="#7b5cd6"/><text x="286" y="94">GPIO23 MOSI → SDIO</text>
+    <rect x="262" y="104" width="18" height="4" fill="#1d9e75"/><text x="286" y="110">GPIO19 MISO → GIO2</text>
+    <rect x="262" y="120" width="18" height="4" fill="#e07020"/><text x="286" y="126">GPIO18 SCK → SCK</text>
+    <rect x="262" y="136" width="18" height="4" fill="#d4537e"/><text x="286" y="142">GPIO5 CS → CSN</text>
+    <rect x="262" y="152" width="18" height="4" fill="#e02424"/><text x="286" y="158">3V3 → VDD (3.3 V only!)</text>
+    <rect x="262" y="168" width="18" height="4" fill="#333333"/><text x="286" y="174">GND → VSS</text>
+  </g>
+</svg>
